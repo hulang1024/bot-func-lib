@@ -1,0 +1,21 @@
+(require net/url)
+(require json)
+(require srfi/13)
+
+(define (get-joke)
+  (define api-key "7e9401a58dc937d2d827a09fc39f37a3")
+
+  (define (create-url)
+    (string->url (format "~A?key=~A"
+                         "https://v.juhe.cn/joke/randJoke.php"
+                         api-key)))
+
+  (define-values (status headers in)
+    (http-sendrecv/url (create-url)))
+
+  (define api-result (string->jsexpr (port->string in)))
+  (define result (hash-ref api-result 'result))
+
+  (display (hash-ref (list-ref result 0) 'content)))
+
+(define-name-command 笑话 (get-joke))
