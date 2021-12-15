@@ -23,6 +23,8 @@
          racket/sequence
          racket/local
          racket/format
+         racket/date
+         (only-in picturing-programs/private/map-image real->int)
          (for-syntax racket/base))
 
 (define-syntax-rule (define-name-command name body)
