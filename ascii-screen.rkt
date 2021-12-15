@@ -25,3 +25,9 @@
         (for ([c (range w)])
           (display (vector-ref (vector-ref vec r) c)))
         (displayln "")))))
+
+
+(define (text-width text)
+  (define (ch-width ch)
+    (if (> (char->integer ch) 127) 2 1))
+  (apply + (map (λ (ch) (ch-width ch)) (string->list text))))
