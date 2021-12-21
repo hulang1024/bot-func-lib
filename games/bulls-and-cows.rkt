@@ -30,7 +30,7 @@
       (generate-answer)
       (set! is-started #t)
       (displayln (format "😙猜数字开始了，已生成~A位的每位各不相同的一个数字。" answer-length))
-      (display "使用 !(我猜 x) 进行猜数，或发送 !猜数字帮助"))
+      (display "使用 (我猜 x) 进行猜数，或发送 猜数字帮助"))
 
     (define/public (end)
       (set! is-started #f)

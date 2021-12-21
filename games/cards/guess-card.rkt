@@ -30,7 +30,7 @@
       (displayln (format "首先请从以下~A张牌中随意【记住一张牌】。\n" (send pack cards-count)))
       (set! status status_created)
       (send pack print)
-      (display "\n如果已经记住，现在开始请不要更换。\n确认请发送 !猜牌开始"))
+      (display "\n如果已经记住，现在开始请不要更换。\n确认请发送 猜牌开始"))
 
     (define/public (end)
       (set! status status_init)
@@ -44,7 +44,7 @@
          (set! participant __sender)
          (set! status status_started)
          (send pack shuffle-cards)
-         (displayln "接下来你需要回答你心中的牌出现在下面的哪个序列中。\n发送 !猜牌选择x，x写1，2或3 ")
+         (displayln "接下来你需要回答你心中的牌出现在下面的哪个序列中。\n发送 猜牌选择x，x写1，2或3 ")
          (next-step)]
         [else (display "已经开始")]))
 

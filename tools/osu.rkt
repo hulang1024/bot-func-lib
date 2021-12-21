@@ -111,7 +111,7 @@
   (λ (osu-uid)
     (let ([found (send osu-user-manager query-osu-user osu-uid mode)])
       (when (not found)
-        (displayln (string-append "未找到osu用户" osu-uid))))))
+        (printf "未找到osu用户 ~a\n" osu-uid)))))
 
 (define-name-command osu-stat (osu-stat-sender 0))
 (define-name-command taiko-stat (osu-stat-sender 1))

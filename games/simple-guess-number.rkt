@@ -17,7 +17,7 @@
       (set! is-started #t)
       (display (string-append "😙猜数字开始了，已生成"
                               (number->string max)
-                              "内的数，使用 !(我猜 x) 进行猜数。")))
+                              "内的数，使用 (我猜 x) 进行猜数。")))
 
     (define/public (end)
       (set! is-started #f)

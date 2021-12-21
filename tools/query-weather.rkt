@@ -58,7 +58,7 @@
   (let ([ok (query-weather (quote location))])
     (when ok
       (增加位置天气 (quote location))
-      (display (format "\n（你可以使用更简单的指令哦：!~A天气）" (quote location))))))
+      (display (format "\n（你可以使用更简单的指令哦：~A天气）" (quote location))))))
 
 (define (查天气列表 ls)
   (for ((l ls))

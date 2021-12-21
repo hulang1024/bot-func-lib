@@ -37,7 +37,7 @@
       (print-user other))
 
     (define (start)
-      (displayln "井字棋游戏开始! 落子命令：!(井字棋落子 横坐标 纵坐标) ")
+      (displayln "井字棋游戏开始! 落子命令：(井字棋落子 横坐标 纵坐标) ")
       (set! status status_playing)
       (send tic-tac-toe start)
       (hash-set! chess-to-user 1 creator)
@@ -54,7 +54,7 @@
          (set! creator (hash-copy __sender))
          (set! other #f)
          (set! status status_ready)
-         (display "井字棋游戏创建成功！\n另一个玩家要加入游戏请发送：!加入井字棋")]
+         (display "井字棋游戏创建成功！\n另一个玩家要加入游戏请发送：加入井字棋")]
         [(= status status_ready)
          (if (= __sender-id creator-uid)
              (display "请等待其它玩家加入")
@@ -85,11 +85,11 @@
       (cond
         [(or (= status status_init)
              (= status status_ended))
-         (display "游戏未创建，创建游戏请发送：!井字棋")]
+         (display "游戏未创建，创建游戏请发送：井字棋")]
         [(= status status_ready)
          (if (= __sender-id creator-uid)
              (display "请等待其它玩家加入")
-             (display "请先加入游戏，发送：!加入井字棋"))]
+             (display "请先加入游戏，发送：加入井字棋"))]
         [(= status status_playing)
          (let ([is-arg-ok #t]
                [expected-user (hash-ref chess-to-user now-chess)])

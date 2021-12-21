@@ -35,9 +35,9 @@
 (define-name-command sorry
   (begin
     (displayln "制作为所欲为gif（更多信息前往 https://github.com/xtyxtyx/sorry)。\n命令：")
-    (displayln (string-append "!(make-sorry-gif 模板 (sorry-subtitles 字幕文本列表))"
-                            "  ;例如：!(make-sorry-gif '土拨鼠 (sorry-subtitles \"啊\"))\n"))
-    (displayln "!sorry模板")))
+    (displayln (string-append "(make-sorry-gif 模板 (sorry-subtitles 字幕文本列表))"
+                            "  ;例如：(make-sorry-gif '土拨鼠 (sorry-subtitles \"啊\"))\n"))
+    (displayln "sorry模板")))
 
 (define (sorry模板)
   (displayln "支持的sorry模板：")

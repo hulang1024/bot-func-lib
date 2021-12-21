@@ -79,7 +79,7 @@
              (if (hash-has-key? user-fish-baskets __sender-id)
                  (hash-ref user-fish-baskets __sender-id)
                  (begin
-                   (display "\n帮助命令：!摸鱼帮助")
+                   (display "\n帮助命令：摸鱼帮助")
                    (add-user __sender-id __sender)
                    (create-fish-basket __sender-id)))])
         (if (send fish-basket full?)
@@ -153,7 +153,7 @@
 
 (define fishing-game (new fishing-game%))
 (define-name-command 摸鱼帮助
-  (display "摸鱼命令：\n !摸鱼\n !我的鱼\n !清空我的鱼\n !摸鱼排名\n !摸鱼排名按条数\n !摸鱼排名按重量"))
+  (display "摸鱼命令：\n 摸鱼\n 我的鱼\n 清空我的鱼\n 摸鱼排名\n 摸鱼排名按条数\n 摸鱼排名按重量"))
 (define-name-command 摸鱼 (send fishing-game fishing))
 (define-name-command 钓鱼 摸鱼)
 (define-name-command 我的鱼 (send fishing-game stat-fish-basket __sender))
