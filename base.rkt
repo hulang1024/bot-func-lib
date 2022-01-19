@@ -24,8 +24,12 @@
          racket/local
          racket/format
          racket/date
-         (only-in picturing-programs/private/map-image real->int)
-         (for-syntax racket/base))
+         (for-syntax racket/base)
+         math/base
+         (except-in racket/draw make-color make-pen)
+         2htdp/image
+         mrlib/gif
+         (only-in mrlib/image-core render-image))
 
 (define-syntax-rule (define-name-command name body)
   (define-syntax name

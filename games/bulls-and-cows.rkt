@@ -11,7 +11,7 @@
              [seed-vec (list->vector (map (λ (n) (string-ref (number->string n) 0))
                                           (range seed-length)))])
         (for ([i (range answer-length)])
-          (let ([r (real->int (floor (* (random) (- seed-length 1))))])
+          (let ([r (random-integer 0 seed-length)])
             (vector-set! answer i (vector-ref seed-vec r))
             (vector-set! seed-vec r (vector-ref seed-vec (- seed-length i 1)))))))
 

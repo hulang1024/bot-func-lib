@@ -1,0 +1,39 @@
+(define (digital-clock-gif)
+  (define text-color (color (random-integer 0 255)
+                            (random-integer 0 255)
+                            (random-integer 0 255)))
+  (define (draw-digital-clock-image hour minute second)
+    (define (leftpad v)
+      (~a v #:width 2 #:align 'right #:pad-string "0"))
+    (define str (format "~a:~a:~a"
+                        (leftpad hour)
+                        (leftpad minute)
+                        (leftpad second)))
+    (text/font str 50 text-color "WW Digital" 'modern 'normal 'normal #f))
+  
+  (define (image->bitmap image)
+    (define bm (make-bitmap 206 (image-height image)))
+    (define dc (send bm make-dc))
+    (send dc set-smoothing 'aligned)
+    (render-image image dc 0 0)
+    (send dc set-bitmap #f)
+    bm)
+  (define bitmaps null)
+  (define duration-s 15)
+  (for ([s duration-s])
+    (define now (seconds->date (+ (current-seconds) s)))
+    (define hour (date-hour now))
+    (define minute (date-minute now))
+    (define second (date-second now))
+    (define image (draw-digital-clock-image hour minute second))
+    (set! bitmaps (append bitmaps (cons (image->bitmap image) null))))
+  (define path (build-path __data-dir-path "digital-clock.gif"))
+  (write-animated-gif bitmaps 100 path
+                      #:loop? #f
+                      #:one-at-a-time? #t
+                      #:disposal 'restore-bg)
+  (__eval-output-add-image #:path (path->string path)))
+
+
+(define-name-command 时钟 (digital-clock-gif))
+(define-name-command 报时 (digital-clock-gif))

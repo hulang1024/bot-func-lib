@@ -3,16 +3,17 @@
 (provide init-user-lib)
 
 (define (init-user-lib env)
-  (init-chat-bot-lib env))
+  (init-bot-func-lib env))
 
-(define (init-chat-bot-lib env)
-  (define lib-dir "/Users/hulang/Documents/workspace/chat-bot-lib")
+(define (init-bot-func-lib env)
+  (define lib-dir "/home/eval-server/lib")
   (define (eval-file path env)
     (define in (open-input-file path #:mode 'text))
-    ; 出现读一半的问题，加上begin 解决了
-    (define expr-string (string-append "(begin " (port->string in) "\n)"))
-    (define expr (read (open-input-string expr-string)))
-    (eval expr env))
+    (let loop ()
+      (define expr (read in))
+      (when (not (eof-object? expr))
+        (eval expr env)
+        (loop))))
 
   (displayln "lib loading")
   (for ((filename
@@ -25,11 +26,14 @@
            "games/simple-guess-number"
            "games/tic-tac-toe"
            "games/tic-tac-toe-online"
-           "games/fishing/fishs"
-           "games/fishing/main"
            "games/cards/card"
            "games/cards/guess-card"
-            
+
+           "fz-rkt-lib"
+
+           "tools/analog-clock"
+           "tools/digital-clock"
+           "tools/blink-text-gif"
            "tools/dict"
            "tools/joke"
            "tools/citys"
