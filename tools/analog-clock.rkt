@@ -35,7 +35,8 @@
     (define second (date-second now))
     (define image (draw-clock-image hour minute second))
     (set! bitmaps (append bitmaps (cons (image->bitmap image) null))))
-  (define path (build-path __data-dir-path "clock.gif"))
+  (define filename (string-append (number->string (current-milliseconds) 16) "-clock.gif"))
+  (define path (build-path __data-dir-path filename))
   (write-animated-gif bitmaps 100 path
                       #:loop? #f
                       #:one-at-a-time? #t

@@ -19,7 +19,8 @@
                                       "solid"
                                       text-color)))
     (set! bitmaps (append bitmaps (cons (image->bitmap image) null))))
-  (define path (build-path __data-dir-path "text.gif"))
+  (define filename (string-append (number->string (current-milliseconds) 16) "-text.gif"))
+  (define path (build-path __data-dir-path filename))
   (write-animated-gif bitmaps delay-csec path
                       #:loop? #t
                       #:one-at-a-time? #t
